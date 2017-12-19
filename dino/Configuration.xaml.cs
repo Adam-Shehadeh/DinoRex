@@ -19,41 +19,45 @@ using dino_POPUP;
 
 namespace dino
 {
-    /// <summary>
-    /// Interaction logic for Configuration.xaml
-    /// </summary>
     public partial class Configuration : UserControl
     {
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
         ApplicationSettings applicationSettings = new ApplicationSettings();
         DataReader dr = new DataReader();
-        
+        Random rnd = new Random(Convert.ToInt32(DateTime.Now.Millisecond));
+        Rawr r = new Rawr();
         int secondsTilNext = 0;
         int counter;
+        string status = "Off";
 
         public Configuration()
         {
+            dispatcherTimer.Tick += new EventHandler(Update);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
             InitializeComponent();
         }
 
         protected override void OnInitialized(EventArgs e) {
             base.OnInitialized(e);
             applicationSettings = dr.ReadSettingsFromXML();
+            txtInterval1.Text = applicationSettings.interval1.ToString();
+            txtInterval2.Text = applicationSettings.interval2.ToString();
+            ResetTimer();
         }
 
         private void ResetTimer() {
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(Update);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();
+            secondsTilNext = rnd.Next(Convert.ToInt32(applicationSettings.interval1), Convert.ToInt32(applicationSettings.interval2) + 1);
+            counter = 0;
+            status = "Running";
         }
 
         private void Update(object sender, EventArgs e) {
-            Rawr r = new Rawr();
-            updateLabelStatus();
             counter++;
+            updateLabelStatus();
             if (counter >= secondsTilNext) {
                 r.InvokeMove();
-                counter = 0;
+                ResetTimer();
             }
         }
 
@@ -62,9 +66,17 @@ namespace dino
         }
 
         private void btnSetInterval_Click(object sender, RoutedEventArgs e) {
-            Random rnd = new Random(Convert.ToInt32(DateTime.Now.Millisecond));
-            secondsTilNext = rnd.Next(Convert.ToInt32(txtInterval1.Text), Convert.ToInt32(txtInterval2.Text));
-            ResetTimer();
+            double i1 = Convert.ToDouble(txtInterval1.Text);
+            double i2 = Convert.ToDouble(txtInterval2.Text);
+
+            if (i1 < i2) {
+                applicationSettings = new ApplicationSettings(i1, i2);
+                dr.SaveSettingsToXML(applicationSettings);
+                ResetTimer();
+            }
+            else {
+                MessageBox.Show("Value 1 cannot be greater than Value 2.");
+            }
         }
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) {
             Regex regex = new Regex("[^0-9]+");
@@ -72,9 +84,11 @@ namespace dino
         }
 
         private void updateLabelStatus() {
-            lblStatus.Content = "V: 1.0.0" + System.Environment.NewLine + 
-                "Stat: Running" + System.Environment.NewLine + 
-                "Time: " + DateTime.Now.ToString("HH:mm:ss");
+            lblStatus.Content = "V: 1.0.0" + System.Environment.NewLine +
+                "Stat: " + status + System.Environment.NewLine +
+                "Time: " + DateTime.Now.ToString("HH:mm:ss") + System.Environment.NewLine +
+                "Next: " + secondsTilNext + System.Environment.NewLine +
+                "Count: " + counter;
         }
     }
 }

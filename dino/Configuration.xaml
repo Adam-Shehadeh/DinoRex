@@ -5,22 +5,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:dino"
              mc:Ignorable="d" Height="200" Width="200">
-    <Grid Background="White" Margin="0,0,0,0">
-        <Image x:Name="imgLogo" HorizontalAlignment="Right" Height="73" VerticalAlignment="Top" Width="84" Source="Content/Icons/win10.ico" Margin="0,20,20,0"></Image>
-        <Label x:Name="lblStatus" Content="V: 1.0.0&#xD;&#xA;Stat: Running&#xD;&#xA;Time: " HorizontalAlignment="Left" Height="73" Margin="7,10,0,0" VerticalAlignment="Top" Width="89"></Label>
-        <Label x:Name="lblInterval" Content="Interval (sec)" HorizontalAlignment="Left" Height="28" Margin="7,83,0,0" VerticalAlignment="Top" Width="92"/>
-        <Label x:Name="lblTo" Content="To" HorizontalAlignment="Left" Height="32" Margin="42,106,0,0" VerticalAlignment="Top" Width="23"/>
+    <Grid Background="White" Margin="0,-14,0,0">
+        <Image x:Name="imgLogo" HorizontalAlignment="Right" Height="73" VerticalAlignment="Top" Width="84" Source="Content/Icons/win10.ico" Margin="0,30,20,0"></Image>
+        <Label x:Name="lblStatus" Content="V: 1.0.0&#xD;&#xA;Stat: Running&#xD;&#xA;Time: " HorizontalAlignment="Left" Height="93" Margin="7,10,0,0" VerticalAlignment="Top" Width="89"></Label>
+        <Label x:Name="lblInterval" Content="Interval (sec)" HorizontalAlignment="Left" Height="28" Margin="7,103,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label x:Name="lblTo" Content="To" HorizontalAlignment="Left" Height="32" Margin="42,126,0,0" VerticalAlignment="Top" Width="23"/>
 
-        <TextBox x:Name="txtInterval1" HorizontalAlignment="Left" Height="21" Margin="7,111,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" PreviewTextInput="NumberValidationTextBox"/>
-        <TextBox x:Name="txtInterval2" HorizontalAlignment="Left" Height="21" Margin="65,111,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" PreviewTextInput="NumberValidationTextBox"/>
+        <TextBox x:Name="txtInterval1" HorizontalAlignment="Left" Height="21" Margin="7,131,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" PreviewTextInput="NumberValidationTextBox"/>
+        <TextBox x:Name="txtInterval2" HorizontalAlignment="Left" Height="21" Margin="65,131,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" PreviewTextInput="NumberValidationTextBox"/>
 
-        <Button Content="Enable" HorizontalAlignment="Left" Margin="113,111,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Disable" HorizontalAlignment="Left" Margin="113,138,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Enable" HorizontalAlignment="Left" Margin="113,131,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Disable" HorizontalAlignment="Left" Margin="113,158,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <Button x:Name="btnSetAutoStart" Content="Set AutoStart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="7,163,0,0"/>
-        <Button x:Name="btnRemoveAutoStart" Content="Remove AutoStart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="88,163,0,0"/>
-        <Button x:Name ="btnSetInterval" Content="Set Interval" HorizontalAlignment="Left" Margin="7,138,0,0" VerticalAlignment="Top" Width="93" Click="btnSetInterval_Click" />
-        <Button x:Name="btnClose" Content="X" HorizontalAlignment="Left" Height="20" Margin="180,0,0,0" VerticalAlignment="Top" Width="20" Click="btnClose_Click" Background="#59FF0000" FontWeight="Bold"/>
+        <Button x:Name="btnSetAutoStart" Content="Set AutoStart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="7,183,0,0"/>
+        <Button x:Name="btnRemoveAutoStart" Content="Remove AutoStart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="88,183,0,0"/>
+        <Button x:Name ="btnSetInterval" Content="Set Interval" HorizontalAlignment="Left" Margin="7,158,0,0" VerticalAlignment="Top" Width="93" Click="btnSetInterval_Click" />
+        <Button x:Name="btnClose" Content="X" HorizontalAlignment="Left" Height="20" Margin="180,10,0,0" VerticalAlignment="Top" Width="20" Click="btnClose_Click" Background="#59FF0000" FontWeight="Bold"/>
 
     </Grid>
 </UserControl>

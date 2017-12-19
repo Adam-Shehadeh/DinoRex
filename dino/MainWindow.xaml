@@ -16,5 +16,6 @@
             </Border>
         </tb:TaskbarIcon.TrayPopup>
     </tb:TaskbarIcon>
+    
 </Window>
         

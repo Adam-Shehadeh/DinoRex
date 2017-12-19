@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -18,40 +19,39 @@ namespace dino_POPUP {
     /// Interaction logic for Rawr.xaml
     /// </summary>
     public partial class Rawr : Window {
+
+        private Random rnd = new Random(Convert.ToInt32(DateTime.Now.Millisecond));
+
+
         public Rawr() {
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+
+        }
+
         public void InvokeMove() {
             this.Show();
-            var y = 0;
-            var speed = 0;
-            Random rnd = new Random(Convert.ToInt32(DateTime.Now.Millisecond));
-            y = rnd.Next(0, Convert.ToInt32(this.Height));
-            speed = rnd.Next(10, 60);
-            Move(btnExit, 0, y, this.Width, speed); 
+            MoveDino(DINO_1);
         }
 
-        private void Move(Control control, double startX, double Y, double endX, double speed) {
-            Canvas.SetLeft(control, startX - control.Width);
-            Canvas.SetTop(control, Y);
+        private void MoveDino(Image target) {
+            //Get a speed 
+            double speed = rnd.Next(30, 120) / 100;
+            //Reset Location
+            Canvas.SetTop(target, rnd.Next(0, (int)this.Height));
+            Canvas.SetLeft(target, 0 - target.Width);
 
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += (sender, e) => Update(sender, e, control, endX, speed);
-            dispatcherTimer.Interval = new TimeSpan(0,0,0,0,1);
-            dispatcherTimer.Start();
+            Vector offset = VisualTreeHelper.GetOffset(target);
+            var top = offset.Y;
+            var left = offset.X;
+            TranslateTransform trans = new TranslateTransform();
+            target.RenderTransform = trans;
+            DoubleAnimation anim1 = new DoubleAnimation(0, this.Width, TimeSpan.FromSeconds(1));
+            trans.BeginAnimation(TranslateTransform.XProperty, anim1);
+
         }
-
-        private void Update(object sender, EventArgs e, Control control, double endX, double speed) {
-            if (Canvas.GetLeft(control) < endX) {
-                Canvas.SetLeft(control, Canvas.GetLeft(control) + speed);
-                this.Topmost = true;
-            }
-            else {
-                this.Close();
-            }
-        }
-
         private void btnExit_Click(object sender, RoutedEventArgs e) {
             Environment.Exit(1);
         }
