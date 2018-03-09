@@ -32,28 +32,41 @@ namespace dino_POPUP {
         }
 
         public void InvokeMove() {
+
+            System.Windows.Forms.Screen s = System.Windows.Forms.Screen.AllScreens[0];
+            System.Drawing.Rectangle r = s.WorkingArea;
+            this.Top = r.Top;
+            this.Left = r.Left;
+            this.Width = CalculateScreenWidth();
             this.Show();
+            this.Topmost = true;
             MoveDino(DINO_1);
         }
 
         private void MoveDino(Image target) {
-            //Get a speed 
-            double speed = rnd.Next(30, 120) / 100;
-            //Reset Location
-            Canvas.SetTop(target, rnd.Next(0, (int)this.Height));
-            Canvas.SetLeft(target, 0 - target.Width);
+            //Speed is how many seconds animation is.
+            double speed = rnd.Next(100, 250) / 100;
 
-            Vector offset = VisualTreeHelper.GetOffset(target);
-            var top = offset.Y;
-            var left = offset.X;
+            //Reset Location
+            Canvas.SetTop(target, rnd.Next(0, (int)(this.Height - target.ActualHeight)));
+            Canvas.SetLeft(target, 0);
+
+            //Do animation
             TranslateTransform trans = new TranslateTransform();
             target.RenderTransform = trans;
-            DoubleAnimation anim1 = new DoubleAnimation(0, this.Width, TimeSpan.FromSeconds(1));
+            DoubleAnimation anim1 = new DoubleAnimation(0 - target.ActualWidth, this.Width, TimeSpan.FromSeconds(speed));
             trans.BeginAnimation(TranslateTransform.XProperty, anim1);
 
         }
         private void btnExit_Click(object sender, RoutedEventArgs e) {
             Environment.Exit(1);
+        }
+        private int CalculateScreenWidth() {
+            int local = 0;
+            foreach(var screen in System.Windows.Forms.Screen.AllScreens) {
+                local += screen.Bounds.Width;
+            }
+            return local;
         }
     }
 }
