@@ -164,13 +164,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\dino_lib\dino_DATA.csproj">
+    <ProjectReference Include="..\dino_DATA\dino_ENTITY.csproj">
       <Project>{3ef70a55-650a-46b4-8ce5-fa570d52dbef}</Project>
-      <Name>dino_DATA</Name>
+      <Name>dino_ENTITY</Name>
     </ProjectReference>
     <ProjectReference Include="..\dino_POPUP\dino_POPUP.csproj">
       <Project>{baf85748-2040-4d74-86b6-ecc14f8d3625}</Project>
       <Name>dino_POPUP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dino_SERVICE\dino_SERVICE.csproj">
+      <Project>{3c3081d0-7be0-4012-af04-6ec79187e605}</Project>
+      <Name>dino_SERVICE</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

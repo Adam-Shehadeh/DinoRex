@@ -17,9 +17,11 @@
     <Grid>
 
         <Canvas>
-            <Button x:Name="btnExit" Canvas.Left="0" Canvas.Top="0" Content="End" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="146" Click="btnExit_Click"/>
-            <Image x:Name="DINO_1" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino1.gif" />
-
+            <Button x:Name="btnExit" Canvas.Left="0" Canvas.Top="0" Content="End" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="146" Click="btnExit_Click" Visibility="Hidden"/>
+            <Image x:Name="DINO_1" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino1.gif" Visibility="Hidden" />
+            <Image x:Name="DINO_2" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino 2.gif" Visibility="Hidden" />
+            <Image x:Name="DINO_3" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino 3.gif" Visibility="Hidden" />
+            <Image x:Name="DINO_4" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino 4.gif" Visibility="Hidden" />
         </Canvas>
     </Grid>
 </Window>

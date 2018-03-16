@@ -14,8 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Windows.Threading;
-using dino_DATA;
+using dino_ENTITY;
 using dino_POPUP;
+using dino_SERVICE;
 
 namespace dino
 {
@@ -38,11 +39,20 @@ namespace dino
             InitializeComponent();
         }
 
+
         protected override void OnInitialized(EventArgs e) {
             base.OnInitialized(e);
             applicationSettings = dr.ReadSettingsFromXML();
             txtInterval1.Text = applicationSettings.interval1.ToString();
             txtInterval2.Text = applicationSettings.interval2.ToString();
+            foreach(var s in DinoService.GetAvailableCharacters()) {
+                ddlCharacters.Items.Add(s);
+            }
+            if (applicationSettings.selectedCharacter != null) {
+                ddlCharacters.SelectedItem = "Bongo";
+            } else {
+                ddlCharacters.SelectedIndex = 0;
+            }
             ResetTimer();
         }
 
@@ -56,7 +66,7 @@ namespace dino
             counter++;
             updateLabelStatus();
             if (counter >= secondsTilNext) {
-                r.InvokeMove();
+                r.InvokeMove(ddlCharacters.SelectedValue.ToString());
                 ResetTimer();
             }
         }
@@ -70,7 +80,8 @@ namespace dino
             double i2 = Convert.ToDouble(txtInterval2.Text);
 
             if (i1 < i2) {
-                applicationSettings = new ApplicationSettings(i1, i2);
+                applicationSettings.interval1 = i1;
+                applicationSettings.interval2 = i2;
                 dr.SaveSettingsToXML(applicationSettings);
                 ResetTimer();
             }
@@ -89,6 +100,11 @@ namespace dino
                 "Time: " + DateTime.Now.ToString("HH:mm:ss") + System.Environment.NewLine +
                 "Next: " + secondsTilNext + System.Environment.NewLine +
                 "Count: " + counter;
+        }
+
+        private void ddlCharacters_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            applicationSettings.selectedCharacter = ddlCharacters.SelectedItem.ToString();
+            dr.SaveSettingsToXML(applicationSettings);
         }
     }
 }

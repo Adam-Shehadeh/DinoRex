@@ -100,9 +100,29 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Other\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\dinosaurs\dino1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\dinosaurs\dino 2.gif" />
+    <Resource Include="Content\dinosaurs\dino 3.gif" />
+    <Resource Include="Content\dinosaurs\dino 4.gif" />
+    <Resource Include="Content\dinosaurs\foxy.gif" />
+    <Resource Include="Content\dinosaurs\Naruto Uzumaki.gif" />
+    <Resource Include="Content\dinosaurs\pikachu.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dino_DATA\dino_ENTITY.csproj">
+      <Project>{3ef70a55-650a-46b4-8ce5-fa570d52dbef}</Project>
+      <Name>dino_ENTITY</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dino_SERVICE\dino_SERVICE.csproj">
+      <Project>{3c3081d0-7be0-4012-af04-6ec79187e605}</Project>
+      <Name>dino_SERVICE</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Serialization;
 
-namespace dino_DATA
+namespace dino_ENTITY
 {
     public class DataReader
     {

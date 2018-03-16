@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace dino_DATA {
+namespace dino_ENTITY {
     public class ApplicationSettings {
         public double interval1 { get; set; }
         public double interval2 { get; set; }
         public bool enabled = true;
+        public string selectedCharacter { get; set; }
 
         public ApplicationSettings() { } //For XML Serializer
 
@@ -22,5 +23,6 @@ namespace dino_DATA {
             interval2 = i2;
             enabled = active;
         }
+
     }
 }

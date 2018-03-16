@@ -13,6 +13,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using dino_ENTITY;
+using dino_SERVICE;
 
 namespace dino_POPUP {
     /// <summary>
@@ -31,7 +33,7 @@ namespace dino_POPUP {
 
         }
 
-        public void InvokeMove() {
+        public void InvokeMove(string charName) {
 
             System.Windows.Forms.Screen s = System.Windows.Forms.Screen.AllScreens[0];
             System.Drawing.Rectangle r = s.WorkingArea;
@@ -40,16 +42,19 @@ namespace dino_POPUP {
             this.Width = CalculateScreenWidth();
             this.Show();
             this.Topmost = true;
-            MoveDino(DINO_1);
+            MoveDino(DinoService.MasterCharacterList.Where(i=>i.Name.Equals(charName)).First());
         }
 
-        private void MoveDino(Image target) {
-            //Speed is how many seconds animation is.
-            double speed = rnd.Next(100, 250) / 100;
+        private void MoveDino(ICharacter chara) {
+            Image target = (Image)this.FindName(chara.FormImageName);
+            //double speed = rnd.Next(200, 350) / 100;
+            double speed = chara.Speed / 100;
 
             //Reset Location
             Canvas.SetTop(target, rnd.Next(0, (int)(this.Height - target.ActualHeight)));
             Canvas.SetLeft(target, 0);
+
+            target.Visibility = Visibility.Visible;
 
             //Do animation
             TranslateTransform trans = new TranslateTransform();
