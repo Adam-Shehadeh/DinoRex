@@ -14,9 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Windows.Threading;
+using System.Reflection;
 using dino_ENTITY;
 using dino_POPUP;
 using dino_SERVICE;
+
 
 namespace dino
 {
@@ -26,7 +28,6 @@ namespace dino
         ApplicationSettings applicationSettings = new ApplicationSettings();
         DataReader dr = new DataReader();
         Random rnd = new Random(Convert.ToInt32(DateTime.Now.Millisecond));
-        Rawr r = new Rawr();
         int secondsTilNext = 0;
         int counter;
         string status = "Off";
@@ -49,7 +50,7 @@ namespace dino
                 ddlCharacters.Items.Add(s);
             }
             if (applicationSettings.selectedCharacter != null) {
-                ddlCharacters.SelectedItem = "Bongo";
+                ddlCharacters.SelectedItem = applicationSettings.selectedCharacter;
             } else {
                 ddlCharacters.SelectedIndex = 0;
             }
@@ -66,7 +67,7 @@ namespace dino
             counter++;
             updateLabelStatus();
             if (counter >= secondsTilNext) {
-                r.InvokeMove(ddlCharacters.SelectedValue.ToString());
+                new Rawr().InvokeMove(ddlCharacters.SelectedValue.ToString());
                 ResetTimer();
             }
         }
@@ -105,6 +106,16 @@ namespace dino
         private void ddlCharacters_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             applicationSettings.selectedCharacter = ddlCharacters.SelectedItem.ToString();
             dr.SaveSettingsToXML(applicationSettings);
+        }
+
+        
+
+        private void btnSetAutoStart_Click(object sender, RoutedEventArgs e) {
+            ApplicationSettings.RegModify(ApplicationSettings.RegistryAction.LOCAL_MACHINE_ADD_STARTUP);
+        }
+
+        private void btnRemoveAutoStart_Click(object sender, RoutedEventArgs e) {
+            ApplicationSettings.RegModify(ApplicationSettings.RegistryAction.LOCAL_MACHINE_REMOVE_STARTUP);
         }
     }
 }

@@ -33,6 +33,13 @@ namespace dino_POPUP {
 
         }
 
+        protected override void OnDeactivated(EventArgs e) {
+            //Makes window always ontop
+            base.OnDeactivated(e);
+            this.Topmost = true;
+            this.Activate();
+        }
+
         public void InvokeMove(string charName) {
 
             System.Windows.Forms.Screen s = System.Windows.Forms.Screen.AllScreens[0];
@@ -47,8 +54,9 @@ namespace dino_POPUP {
 
         private void MoveDino(ICharacter chara) {
             Image target = (Image)this.FindName(chara.FormImageName);
-            //double speed = rnd.Next(200, 350) / 100;
-            double speed = chara.Speed / 100;
+            double speed = (chara.Speed / 100) * NumOfScreens();
+            //double speed = rnd.Next(500, 550) / 100;
+            //Image target = DINO_2;
 
             //Reset Location
             Canvas.SetTop(target, rnd.Next(0, (int)(this.Height - target.ActualHeight)));
@@ -60,7 +68,11 @@ namespace dino_POPUP {
             TranslateTransform trans = new TranslateTransform();
             target.RenderTransform = trans;
             DoubleAnimation anim1 = new DoubleAnimation(0 - target.ActualWidth, this.Width, TimeSpan.FromSeconds(speed));
+            anim1.Completed += (s, e) => {
+                this.Close();
+            };
             trans.BeginAnimation(TranslateTransform.XProperty, anim1);
+            
 
         }
         private void btnExit_Click(object sender, RoutedEventArgs e) {
@@ -70,6 +82,13 @@ namespace dino_POPUP {
             int local = 0;
             foreach(var screen in System.Windows.Forms.Screen.AllScreens) {
                 local += screen.Bounds.Width;
+            }
+            return local;
+        }
+        private int NumOfScreens() {
+            int local = 0;
+            foreach (var screen in System.Windows.Forms.Screen.AllScreens) {
+                local++;
             }
             return local;
         }

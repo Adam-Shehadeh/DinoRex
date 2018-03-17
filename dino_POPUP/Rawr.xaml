@@ -22,6 +22,9 @@
             <Image x:Name="DINO_2" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino 2.gif" Visibility="Hidden" />
             <Image x:Name="DINO_3" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino 3.gif" Visibility="Hidden" />
             <Image x:Name="DINO_4" gif:ImageBehavior.AnimatedSource="Content/dinosaurs/dino 4.gif" Visibility="Hidden" />
+            <Image x:Name="FOXY" gif:ImageBehavior.AnimatedSource="Content/Other/foxy.gif" Visibility="Hidden" />
+            <Image x:Name="PIKACHU" gif:ImageBehavior.AnimatedSource="Content/Other/pikachu.gif" Visibility="Hidden" />
+            <Image x:Name="NARUTO" gif:ImageBehavior.AnimatedSource="Content/Other/Naruto Uzumaki.gif" Visibility="Hidden" />
         </Canvas>
     </Grid>
 </Window>

@@ -6,12 +6,12 @@
         xmlns:configPopup="clr-namespace:dino"
         xmlns:local="clr-namespace:dino"
         mc:Ignorable="d"
-        Title="Configuration" Height="221.654" Width="210.308" ShowInTaskbar="True"
+        Title="Configuration" Height="221.654" Width="210.308" ShowInTaskbar="False"
         xmlns:tb="http://www.hardcodet.net/taskbar" WindowStyle="ToolWindow" Visibility="Hidden">
     
     <tb:TaskbarIcon IconSource="/Content/Icons/win10.ico" ToolTipText="Windows Provider Host">
         <tb:TaskbarIcon.TrayPopup>
-            <Border Background="White" BorderBrush="Orange" BorderThickness="2" CornerRadius="4" Width="400" Height="200">
+            <Border Background="White" BorderBrush="Orange" BorderThickness="2" CornerRadius="4" Width="400" Height="250">
                 <configPopup:Configuration x:Name="Config" />
             </Border>
         </tb:TaskbarIcon.TrayPopup>

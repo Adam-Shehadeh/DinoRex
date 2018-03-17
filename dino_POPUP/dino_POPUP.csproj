@@ -100,9 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Other\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Content\dinosaurs\dino1.gif" />
   </ItemGroup>
@@ -110,9 +108,9 @@
     <Resource Include="Content\dinosaurs\dino 2.gif" />
     <Resource Include="Content\dinosaurs\dino 3.gif" />
     <Resource Include="Content\dinosaurs\dino 4.gif" />
-    <Resource Include="Content\dinosaurs\foxy.gif" />
-    <Resource Include="Content\dinosaurs\Naruto Uzumaki.gif" />
-    <Resource Include="Content\dinosaurs\pikachu.gif" />
+    <Resource Include="Content\Other\foxy.gif" />
+    <Resource Include="Content\Other\Naruto Uzumaki.gif" />
+    <Resource Include="Content\Other\pikachu.gif" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dino_DATA\dino_ENTITY.csproj">

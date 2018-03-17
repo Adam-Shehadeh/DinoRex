@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:dino"
-             mc:Ignorable="d" Height="200" Width="400">
-    <Grid Background="White">
-        <Image x:Name="imgLogo" HorizontalAlignment="Right" Height="73" VerticalAlignment="Top" Width="84" Source="Content/Icons/win10.ico" Margin="0,30,20,0"></Image>
+             mc:Ignorable="d" Height="250" Width="400">
+    <Grid Background="White" Height="250" Width="400">
+        <Image x:Name="imgLogo" HorizontalAlignment="Right" Height="73" VerticalAlignment="Top" Width="84" Source="Content/Icons/win10.ico" Margin="0,30,10,0"></Image>
         <Label x:Name="lblStatus" Content="V: 1.0.0&#xD;&#xA;Stat: Running&#xD;&#xA;Time: " HorizontalAlignment="Left" Height="93" Margin="7,10,0,0" VerticalAlignment="Top" Width="89"></Label>
         <Label x:Name="lblInterval" Content="Interval (sec)" HorizontalAlignment="Left" Height="28" Margin="7,103,0,0" VerticalAlignment="Top" Width="92"/>
         <Label x:Name="lblTo" Content="To" HorizontalAlignment="Left" Height="32" Margin="42,126,0,0" VerticalAlignment="Top" Width="23"/>
@@ -14,15 +14,15 @@
         <TextBox x:Name="txtInterval1" HorizontalAlignment="Left" Height="21" Margin="7,131,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" PreviewTextInput="NumberValidationTextBox"/>
         <TextBox x:Name="txtInterval2" HorizontalAlignment="Left" Height="21" Margin="65,131,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35" PreviewTextInput="NumberValidationTextBox"/>
 
-        <Button Content="Enable" HorizontalAlignment="Left" Margin="113,131,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Disable" HorizontalAlignment="Left" Margin="113,158,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Enable" HorizontalAlignment="Left" Margin="7,178,0,0" VerticalAlignment="Top" Width="93"/>
+        <Button Content="Disable" HorizontalAlignment="Left" Margin="7,198,0,0" VerticalAlignment="Top" Width="93"/>
 
-        <Button x:Name="btnSetAutoStart" Content="Set AutoStart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="193,158,0,0"/>
-        <Button x:Name="btnRemoveAutoStart" Content="Remove AutoStart" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Margin="273,158,0,0"/>
+        <Button x:Name="btnSetAutoStart" Content="Set AutoStart [All Users]" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="105,158,0,0" Click="btnSetAutoStart_Click"/>
+        <Button x:Name="btnRemoveAutoStart" Content="Remove AutoStart [All Users]" HorizontalAlignment="Left" VerticalAlignment="Top" Width="158" Margin="105,178,0,0" Click="btnRemoveAutoStart_Click"/>
         <Button x:Name ="btnSetInterval" Content="Set Interval" HorizontalAlignment="Left" Margin="7,158,0,0" VerticalAlignment="Top" Width="93" Click="btnSetInterval_Click" />
-        <Button x:Name="btnClose" Content="X" HorizontalAlignment="Left" Height="20" Margin="374,0,0,0" VerticalAlignment="Top" Width="20" Click="btnClose_Click" Background="#59FF0000" FontWeight="Bold"/>
-        <Label Content="Character:" HorizontalAlignment="Left" Margin="202,127,0,0" VerticalAlignment="Top" Height="25" Width="66"/>
-        <ComboBox x:Name="ddlCharacters" HorizontalAlignment="Left" Margin="273,131,0,0" VerticalAlignment="Top" Width="108" SelectionChanged="ddlCharacters_SelectionChanged"/>
+        <Button x:Name="btnClose" Content="X" HorizontalAlignment="Left" Height="20" Margin="370,5,0,0" VerticalAlignment="Top" Width="20" Click="btnClose_Click" Background="#59FF0000" FontWeight="Bold"/>
+        <Label Content="Character:" HorizontalAlignment="Left" Margin="105,128,0,0" VerticalAlignment="Top" Height="25" Width="66"/>
+        <ComboBox x:Name="ddlCharacters" HorizontalAlignment="Left" Margin="176,131,0,0" VerticalAlignment="Top" Width="214" SelectionChanged="ddlCharacters_SelectionChanged"/>
 
     </Grid>
 </UserControl>
