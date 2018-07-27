@@ -56,6 +56,13 @@ namespace dino_SERVICE{
                 FormImageName = "NARUTO",
                 Direction = CharacterDirection.Right,
                 IsAvailable = true
+            },
+            new ICharacter(){
+                Name = "Misa",
+                Speed = 300,
+                FormImageName = "MISA",
+                Direction = CharacterDirection.Right,
+                IsAvailable = true
             }
         };
 

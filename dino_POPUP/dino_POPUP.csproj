@@ -100,7 +100,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Content\Other\Misa.gif" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\dinosaurs\dino1.gif" />
   </ItemGroup>

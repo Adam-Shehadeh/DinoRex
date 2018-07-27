@@ -41,11 +41,8 @@ namespace dino_POPUP {
         }
 
         public void InvokeMove(string charName) {
-
-            System.Windows.Forms.Screen s = System.Windows.Forms.Screen.AllScreens[0];
-            System.Drawing.Rectangle r = s.WorkingArea;
-            this.Top = r.Top;
-            this.Left = r.Left;
+            this.Top = System.Windows.Forms.Screen.AllScreens.Min(x => x.Bounds.Top);
+            this.Top = System.Windows.Forms.Screen.AllScreens.Min(x => x.Bounds.Left);
             this.Width = CalculateScreenWidth();
             this.Show();
             this.Topmost = true;
@@ -60,7 +57,7 @@ namespace dino_POPUP {
 
             //Reset Location
             Canvas.SetTop(target, rnd.Next(0, (int)(this.Height - target.ActualHeight)));
-            Canvas.SetLeft(target, 0);
+            Canvas.SetLeft(target, System.Windows.Forms.Screen.AllScreens.Min(x=>x.Bounds.Left));
 
             target.Visibility = Visibility.Visible;
 

@@ -14,27 +14,37 @@ namespace dino_ENTITY
     {
 
         private static string settingsFile = "rex.xml";
-        private static string fullpath = Environment.CurrentDirectory + "\\" + settingsFile;
-        private ApplicationSettings defaultSettings = new ApplicationSettings( 1, 20, true );
+        private static string fullpath = AppDomain.CurrentDomain.BaseDirectory + settingsFile;    //Absolute path to app directory even when on shortcut
+        //private static string fullpath = Environment.CurrentDirectory + "\\" + settingsFile;        //directory of what we execute
+        private ApplicationSettings defaultSettings = new ApplicationSettings() {
+            interval1 = 1,
+            interval2 = 20,
+            counter = 0,
+            status = "Off",
+            enabled = true,
+            secondsTilNext = 20,
+            selectedCharacter = "Bongo"
+        };
 
         public DataReader() {
             Initialize();
+            
         }
         public void Initialize() {
-            if (!File.Exists(settingsFile)) {
+            if (!File.Exists(fullpath)) {
                 SaveSettingsToXML(defaultSettings); //Default settings if file does not exist.
             }
         }
         public ApplicationSettings ReadSettingsFromXML() {
             XmlSerializer reader = new XmlSerializer(typeof(ApplicationSettings));
-            StreamReader file = new StreamReader(fullpath);
+            StreamReader file = new StreamReader(@fullpath);
             ApplicationSettings local = (ApplicationSettings)reader.Deserialize(file);
             file.Close();
             return local;
         }
         public void SaveSettingsToXML(ApplicationSettings ap) {
             XmlSerializer writer = new XmlSerializer(typeof(ApplicationSettings));
-            FileStream file = File.Create(fullpath);
+            FileStream file = File.Create(@fullpath);
             writer.Serialize(file, ap);
             file.Close();
         }
