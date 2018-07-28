@@ -42,7 +42,7 @@ namespace dino_POPUP {
 
         public void InvokeMove(string charName) {
             this.Top = System.Windows.Forms.Screen.AllScreens.Min(x => x.Bounds.Top);
-            this.Top = System.Windows.Forms.Screen.AllScreens.Min(x => x.Bounds.Left);
+            this.Left = System.Windows.Forms.Screen.AllScreens.Min(x => x.Bounds.Left);
             this.Width = CalculateScreenWidth();
             this.Show();
             this.Topmost = true;
@@ -57,14 +57,14 @@ namespace dino_POPUP {
 
             //Reset Location
             Canvas.SetTop(target, rnd.Next(0, (int)(this.Height - target.ActualHeight)));
-            Canvas.SetLeft(target, System.Windows.Forms.Screen.AllScreens.Min(x=>x.Bounds.Left));
+            Canvas.SetLeft(target, 0);
 
             target.Visibility = Visibility.Visible;
 
             //Do animation
             TranslateTransform trans = new TranslateTransform();
             target.RenderTransform = trans;
-            DoubleAnimation anim1 = new DoubleAnimation(0 - target.ActualWidth, this.Width, TimeSpan.FromSeconds(speed));
+            DoubleAnimation anim1 = new DoubleAnimation(0-target.ActualWidth, this.Width, TimeSpan.FromSeconds(speed));
             anim1.Completed += (s, e) => {
                 this.Close();
             };

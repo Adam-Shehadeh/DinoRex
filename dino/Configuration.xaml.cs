@@ -34,6 +34,7 @@ namespace dino
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
             InitializeComponent();
+            //new Rawr().InvokeMove(this.ddlCharacters.SelectedValue.ToString());
         }
 
 
@@ -64,7 +65,7 @@ namespace dino
                 applicationSettings.counter++;
             }
             if (applicationSettings.counter >= applicationSettings.secondsTilNext) {
-                new Rawr().InvokeMove(ddlCharacters.SelectedValue.ToString());
+                new Rawr().InvokeMove(this.ddlCharacters.SelectedValue.ToString());
                 updateLabelStatus();
                 ResetTimer();
             }
